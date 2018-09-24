@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    var totalTime = 30;
+
+    var totalTime = 120;
     var correct = 0;
     var wrong = 0;
     var unanswered = 0;
@@ -8,7 +9,7 @@ $(document).ready(function () {
 
     var questions = [
         {
-            prompt: "What is the name of this famous painting by Edvard Munch?",
+            prompt: "What is the name of this iconic painting by Edvard Munch?",
             image: "The Scream.jpg",
             caption: "A man screaming on a bridge",
             answerChoices: [
@@ -30,7 +31,7 @@ $(document).ready(function () {
             correctAnswer: "Heart Period"
         },
         {
-            prompt: "Which of these movements attempted to capture the movement of changing light via swift thin brush strokes?",
+            prompt: "Which of these movements attempted to capture the dynamics of light via swift thin brush strokes?",
             image: null,
             caption: null,
             answerChoices: [
@@ -52,15 +53,13 @@ $(document).ready(function () {
             correctAnswer: "M.C. Escher"
         },
         {
-            prompt: "Which of these female artists is NOT from the 20th century?",
+            prompt: "Georgia O'Keefe's famous flower paintings have been speculated to be symbols of female genitalia.",
             image: null,
             caption: null,
             answerChoices: [
-                "Georgia O'Keefe",
-                "Frida Kahlo",
-                "Dorothy Tanning",
-                "Saint Catherine of Bologna"],
-            correctAnswer: "Saint Catherine of Bologna"
+                "True",
+                "False"],
+            correctAnswer: "True"
         },
         {
             prompt: "Which of these is NOT the name of a Teenage Mutant Ninja Turtle?",
@@ -69,9 +68,159 @@ $(document).ready(function () {
             answerChoices: [
                 "Leonardo",
                 "Raphael",
-                "Masaccio",
+                "Giovanni",
                 "Dontello"],
-            correctAnswer: "Masaccio"
+            correctAnswer: "Giovanni"
+        },
+        {
+            prompt: "What is the name of this oft-parodied painting by Grant Wood?",
+            image: "American Gothic.jpg",
+            caption: "Woman and man with pitchfork in front of house",
+            answerChoices: [
+                "American Gothic",
+                "Forlorn Farmers",
+                "Country Folk",
+                "Odd Couple"],
+            correctAnswer: "American Gothic"
+        },
+        {
+            prompt: "Michelangelo is famous for painting the ceiling of the ",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Hagia Sophia",
+                "Sistine Chapel",
+                "Notre Dame",
+                "St. Paul's Cathedral"],
+            correctAnswer: "Sistine Chapel"
+        },
+        {
+            prompt: "Vincent Van Gogh only sold one painting within his lifetime.",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "True",
+                "False"],
+            correctAnswer: "True"
+        },
+        {
+            prompt: "What is the name of the figure depicted in this familiar painting?",
+            image: "Mona Lisa.jpg",
+            caption: "smiling woman",
+            answerChoices: [
+                "Mona Lisa",
+                "Lisa Gherardini",
+                "Lady Monalisse",
+                "her name is unknown"],
+            correctAnswer: "Lisa Gherardini"
+        },
+        {
+            prompt: "In 1917, Marcel Duchamp submitted to the Society of Independent Artists a sculpture of ",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "a dog eating from a plate of spaghetti",
+                "a house ruined by an earthquake",
+                "a gaunt child",
+                "a toilet"],
+            correctAnswer: "a toilet"
+        },
+        {
+            prompt: "In Rene Magritte's self-portrait The Son of Man, the subject's face is covered by a(n)",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "apple",
+                "lemon",
+                "bouquet",
+                "pair of shades"],
+            correctAnswer: "apple"
+        },
+        {
+            prompt: "The most popular depiction of Jesus Christ--a young man with long hair and a beard--was originally inspired by old paintings of ",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Moses",
+                "Zeus",
+                "Ra",
+                "Apollo"],
+            correctAnswer: "Zeus"
+        },
+        {
+            prompt: "Which of these artists created 32 paintings of Campbell's Soup Cans?",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Jasper Johns",
+                "Robert Rauschenberg",
+                "Andy Warhol",
+                "Sid Maurer"],
+            correctAnswer: "Andy Warhol"
+        },
+        {
+            prompt: "Which painting contains the face of the following woman?",
+            image: "Venus.jpg",
+            caption: "porcelein-skinned lady with golden curly hair",
+            answerChoices: [
+                "Whistler's Mother",
+                "The Birth of Venus",
+                "Lady with an Ermine",
+                "Head of a Woman"],
+            correctAnswer: "The Birth of Venus"
+        },
+        {
+            prompt: "Where was Vincent Van Gogh's The Starry Night painted?",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "His home studio",
+                "On top of a hill",
+                "A mental institution",
+                "Atop a clock tower"],
+            correctAnswer: "A mental institution"
+        },
+        {
+            prompt: "Who sculpted The Thinker?",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Octavian Rodin",
+                "Auguste Rodin",
+                "November Rodin",
+                "December Rodin"],
+            correctAnswer: "Auguste Rodin"
+        },
+        {
+            prompt: "The small triangular object at the center right of The Great Wave off Kanagawa is Mt. Fuji",
+            image: "Wave.jpg",
+            caption: "Giant wave crashes around vessels",
+            answerChoices: [
+                "True",
+                "False"],
+            correctAnswer: "True"
+        },
+        {
+            prompt: "Which of these artists was depicted in the Pixar film Coco?",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Pablo Picasso",
+                "Frida Kahlo",
+                "Salvador Dali",
+                "Francisco Goya"],
+            correctAnswer: "Frida Kahlo"
+        },
+        {
+            prompt: "Which is these is the most expensive painting ever sold, as of 2017?",
+            image: null,
+            caption: null,
+            answerChoices: [
+                "Interchange by Willem de Kooning",
+                "When Will You Marry? by Paul Gauguin",
+                "The Card Players by Paul Gauguin",
+                "Salvator Mundi by Leonardo da Vinci"],
+            correctAnswer: "Salvator Mundi by Leonardo da Vinci"
         }
     ];
     //console.log(questions.length);
@@ -83,7 +232,7 @@ $(document).ready(function () {
 
         //exiting start screen, entering questions
         $(".opening-screen").hide();
-        $(".questions").show();
+        $(".question-screen").show();
 
         //displaying questions to the screen
         for (var i = 0; i < questions.length; i++) {
@@ -139,7 +288,19 @@ $(document).ready(function () {
                 //$(answers).append(answer);
                 //$(answer).text(question.answerChoices[i]);
                 //$(".answer").html(radio+correctAnswer+"'>" +answerChoice + "<br>");
-                var htmlLine = radio + answerChoice + "<br>"
+                var htmlLine;
+                //last question contains four images!
+                //"<img src='assets/images/Interchange.jpg' alt='abstract brushstrokes' class='picture'>"
+                // if(i === questions.length - 1) {
+                //     var imgAnswer = document.createElement("img");
+                //     $(imgAnswer).attr("src","assets/images/" + answerChoice);
+                //     $(imgAnswer).addClass("picture");
+                //     console.log(imgAnswer);
+                //     htmlLine = radio + imgAnswer + "<br>";
+                // } 
+                // else {
+                    htmlLine = radio + answerChoice + "<br>";
+                //}
                // console.log(radio + correctAnswer);
                 $(answers).append(htmlLine);
             }
@@ -169,7 +330,7 @@ $(document).ready(function () {
 
     //takes user to results screen
     function gameOver() {
-        $(".questions").hide();
+        $(".question-screen").hide();
         $(".results").show();
         console.log("Results");
         //figuring out which answer choices were selected
@@ -204,4 +365,19 @@ $(document).ready(function () {
         $(".num-wrong").text(wrong);
         $(".num-unanswered").text(unanswered);
     }   
+
+    //resets the game 
+    $(".reset").on("click",function() {
+        totalTime = 120;
+        correct = 0;
+        wrong = 0;
+        unanswered = 0;
+        timer;
+        currentTime = totalTime;
+
+        //back to title screen
+        $(".results").hide();
+        $(".questions").empty();
+        $(".opening-screen").show();
+    });
 });
