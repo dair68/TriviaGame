@@ -1,0 +1,10 @@
+.questions, .results {
+    display: none;
+}
+
+.picture {
+    /* display: inline; */
+    height: auto;
+    width: auto;
+    max-height: 250px;
+}
