@@ -31,7 +31,7 @@ $(document).ready(function () {
             correctAnswer: "Heart Period"
         },
         {
-            prompt: "Which of these movements attempted to capture the dynamics of light via swift thin brush strokes?",
+            prompt: "Which of these attempt to capture the dynamics of light via swift thin brush strokes?",
             image: null,
             caption: null,
             answerChoices: [
@@ -42,7 +42,7 @@ $(document).ready(function () {
             correctAnswer: "Impressionism"
         },
         {
-            prompt: "Which of these artists is famous for paintings that play with perspective and intertwine objects into patterns?",
+            prompt: "Which artist is famous for paintings that play with perspective and intertwine objects into patterns?",
             image: null,
             caption: null,
             answerChoices: [
@@ -53,7 +53,7 @@ $(document).ready(function () {
             correctAnswer: "M.C. Escher"
         },
         {
-            prompt: "Georgia O'Keefe's famous flower paintings have been speculated to be symbols of female genitalia.",
+            prompt: "Georgia O'Keefe's famous flower paintings have been speculated to be symbolic of female parts.",
             image: null,
             caption: null,
             answerChoices: [
@@ -115,7 +115,7 @@ $(document).ready(function () {
             correctAnswer: "Lisa Gherardini"
         },
         {
-            prompt: "In 1917, Marcel Duchamp submitted to the Society of Independent Artists a sculpture of ",
+            prompt: "In 1917, Marcel Duchamp submitted a sculpture of _______ to the Society of Independent Artists.",
             image: null,
             caption: null,
             answerChoices: [
@@ -192,7 +192,7 @@ $(document).ready(function () {
             correctAnswer: "Auguste Rodin"
         },
         {
-            prompt: "The small triangular object at the center right of The Great Wave off Kanagawa is Mt. Fuji",
+            prompt: "The small triangular object at the center right of The Great Wave off Kanagawa is Mt. Fuji.",
             image: "Wave.jpg",
             caption: "Giant wave crashes around vessels",
             answerChoices: [
