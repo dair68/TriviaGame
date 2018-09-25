@@ -7,14 +7,13 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Princess+Sofia" rel="stylesheet">
     <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- <div> -->
+    <div>
         <header>
             <h1 class="title">Art Attack</h1>
-            <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous"></script>
         </header>
         <main>
             <section class="opening-screen">
@@ -23,12 +22,16 @@
                 <img src="assets/images/Selfie Lisa.jpg" alt="Mona Lisa taking a selfie" class="funny-pic">
                 <br>
                 <!-- <br> -->
-                <button class="start">Start!</button>
+                <a href="#top"><button class="start">Start!</button></a>
             </section>
             <section class="question-screen">
-                <h2>Time is ticking. Start answering!</h2>
+                <h2 class="time-instructions">Time is ticking. Start answering!</h2>
                 <h2 class="time-display">Time left: <span class="time"></span></h2>
-                <div class="questions"></div>
+                <hr>
+                <ol class="questions"></ol>
+                <div class="submission">
+                    <button class="submit">Submit Answers</button>
+                </div>
             </section>
             <section class="results">
                 <h2>Results</h2>
@@ -39,7 +42,9 @@
                 <button class="reset">Play Again?</button>
             </section>
         </main>
-    <!-- </div> -->
+        <br>
+        <footer><a href="#top" class="top">Back to top</a></footer>
+    </div>
     <script rel="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 

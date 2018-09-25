@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var totalTime = 120;
+    var totalTime = 180;
     var correct = 0;
     var wrong = 0;
     var unanswered = 0;
@@ -69,7 +69,7 @@ $(document).ready(function () {
                 "Leonardo",
                 "Raphael",
                 "Giovanni",
-                "Dontello"],
+                "Donatello"],
             correctAnswer: "Giovanni"
         },
         {
@@ -104,7 +104,7 @@ $(document).ready(function () {
             correctAnswer: "True"
         },
         {
-            prompt: "What is the name of the figure depicted in this familiar painting?",
+            prompt: "What is the name of the woman in this familiar painting?",
             image: "Mona Lisa.jpg",
             caption: "smiling woman",
             answerChoices: [
@@ -233,6 +233,7 @@ $(document).ready(function () {
         //exiting start screen, entering questions
         $(".opening-screen").hide();
         $(".question-screen").show();
+        $("footer").show();
 
         //displaying questions to the screen
         for (var i = 0; i < questions.length; i++) {
@@ -243,7 +244,7 @@ $(document).ready(function () {
             //console.log(question.prompt);
 
             //creating new container for question
-            var container = document.createElement("div");
+            var container = document.createElement("li");
             $(container).addClass("question-container");
             $(".questions").append(container);
 
@@ -252,6 +253,7 @@ $(document).ready(function () {
             $(prompt).addClass("question");
             $(prompt).text(question.prompt);
             $(container).append(prompt);
+            $(container).append("<br>");            
 
             //console.log(this.image !== "null");
             //image accompanying question
@@ -262,6 +264,7 @@ $(document).ready(function () {
                 $(picture).addClass("picture");
                 $(picture).attr("src", "assets/images/" + question.image);
                 $(picture).attr("alt", question.caption);
+                $(container).append("<br>");
                 $(container).append(picture);
             }
             
@@ -299,12 +302,17 @@ $(document).ready(function () {
                 //     htmlLine = radio + imgAnswer + "<br>";
                 // } 
                 // else {
-                    htmlLine = radio + answerChoice + "<br>";
+                    htmlLine = radio + answerChoice;
                 //}
                // console.log(radio + correctAnswer);
                 $(answers).append(htmlLine);
+                //for styling buttons later
+                // var checkmark = "<span class='checkmark'></span>";
+                // $(answers).append(checkmark);
+                $(answers).append("<br>");
             }
             $(container).append(answers);
+            $(container).append("<br>");
             //console.log(i);
         }
     });
@@ -328,9 +336,16 @@ $(document).ready(function () {
         }
     }
 
+    //submission button, if user finishes early
+    $(".submit").on("click", function() {
+        clearInterval(timer);
+        gameOver();
+    });
+
     //takes user to results screen
     function gameOver() {
         $(".question-screen").hide();
+        $("footer").hide();
         $(".results").show();
         console.log("Results");
         //figuring out which answer choices were selected
@@ -368,7 +383,7 @@ $(document).ready(function () {
 
     //resets the game 
     $(".reset").on("click",function() {
-        totalTime = 120;
+        totalTime = 180;
         correct = 0;
         wrong = 0;
         unanswered = 0;
