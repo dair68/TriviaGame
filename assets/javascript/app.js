@@ -1,11 +1,13 @@
 $(document).ready(function () {
 
-    var totalTime = 180;
+    var totalTime = 150;
     var correct = 0;
     var wrong = 0;
     var unanswered = 0;
     var timer;
     var currentTime = totalTime;
+    //for storing which questions answered correctly/incorrectly/unanswered
+    var results = [];
 
     var questions = [
         {
@@ -253,13 +255,13 @@ $(document).ready(function () {
             $(prompt).addClass("question");
             $(prompt).text(question.prompt);
             $(container).append(prompt);
-            $(container).append("<br>");            
+            $(container).append("<br>");
 
             //console.log(this.image !== "null");
             //image accompanying question
             //console.log(this.image);
             if (question.image !== null) {
-                
+
                 var picture = document.createElement("img");
                 $(picture).addClass("picture");
                 $(picture).attr("src", "assets/images/" + question.image);
@@ -267,25 +269,30 @@ $(document).ready(function () {
                 $(container).append("<br>");
                 $(container).append(picture);
             }
-            
+
             //creating answer container
             var answers = document.createElement("form");
             $(answers).addClass("answers");
 
-           //console.log(question.prompt);
+            //console.log(question.prompt);
 
             //adding answer choices
-            for(var j=0; j<question.answerChoices.length; j++) {
+            for (var j = 0; j < question.answerChoices.length; j++) {
                 //var answer = document.createElement("div");
                 //$(answer).addClass("answer-choice");
-                var radio = "<input type='radio' name='answer-choice' class='answer' ";
+                var radio = "<input type='radio' name='answer-choice' class='answer-question-" + i + "'";
                 //$(answer).attr("type","radio");
                 //$(answer).attr("name","answer-choice");
                 var answerChoice = question.answerChoices[j];
-                radio = radio + "value='" +  answerChoice + "' ";
+                radio = radio + "value='" + answerChoice + "' ";
                 var correctAnswer = question.correctAnswer;
                 radio = radio + "data-correct='" + correctAnswer + "'>";
-               
+
+                //making answer as the correct choice if applicable 
+                if ($(radio).attr("value") === $(radio).attr("data-correct")) {
+                    $(radio).addClass("correct-answer");
+                }
+
                 //$(answer).attr("value",question.correctAnswer);
 
                 //$(answers).append(answer);
@@ -302,9 +309,9 @@ $(document).ready(function () {
                 //     htmlLine = radio + imgAnswer + "<br>";
                 // } 
                 // else {
-                    htmlLine = radio + answerChoice;
+                htmlLine = radio + answerChoice;
                 //}
-               // console.log(radio + correctAnswer);
+                // console.log(radio + correctAnswer);
                 $(answers).append(htmlLine);
                 //for styling buttons later
                 // var checkmark = "<span class='checkmark'></span>";
@@ -330,14 +337,14 @@ $(document).ready(function () {
         $(".time").text(currentTime);
 
         //out of time
-        if(currentTime === 0) {
+        if (currentTime === 0) {
             clearInterval(timer);
             gameOver();
         }
     }
 
     //submission button, if user finishes early
-    $(".submit").on("click", function() {
+    $(".submit").on("click", function () {
         clearInterval(timer);
         gameOver();
     });
@@ -349,50 +356,100 @@ $(document).ready(function () {
         $(".results").show();
         console.log("Results");
         //figuring out which answer choices were selected
-        $(".answer").each(function() {
-            if (this.checked === true)
-            {
-                //console.log($(this).attr("value"));
-                var selectedChoice = $(this).attr("value");
-                var correctChoice = $(this).attr("data-correct");
-                console.log(selectedChoice);
-                console.log(correctChoice);
-                console.log(selectedChoice === correctChoice);
-                //correct answer
-                if(selectedChoice === correctChoice) {
-                    correct++;
+        for (var i = 0; i < questions.length; i++) {
+            var questionAnswered = false;
+            $(".answer-question-" + i).each(function () {
+                if (this.checked === true) {
+                    //console.log($(this).attr("value"));
+                    var selectedChoice = $(this).attr("value");
+                    var correctChoice = $(this).attr("data-correct");
+                    console.log(selectedChoice);
+                    console.log(correctChoice);
+                    console.log(selectedChoice === correctChoice);
+                    //correct answer
+                    if (selectedChoice === correctChoice) {
+                        questionAnswered = true;
+                        correct++;
+                        results.push("correct");
+                    }
+                    //incorrect answer
+                    else {
+                        questionAnswered = true;
+                        wrong++;
+                        results.push("incorrect");
+                    }
                 }
-                //incorrect answer
-                else {
-                    wrong++;
-                }
+            });
+            //question unanswered
+            if (questionAnswered === false) {
+                results.push("unanswered")
             }
-        });
+        }
 
         //unanswer questions = total # questions - correct answers - wrong answers
         unanswered = questions.length - correct - wrong;
         console.log(correct);
         console.log(wrong);
         console.log(questions.length);
-        
+
         //showing the results to the screen
         $(".num-correct").text(correct);
         $(".num-wrong").text(wrong);
         $(".num-unanswered").text(unanswered);
-    }   
+    }
 
     //resets the game 
-    $(".reset").on("click",function() {
-        totalTime = 180;
+    $(".reset").on("click", function () {
+        totalTime = 150;
         correct = 0;
         wrong = 0;
         unanswered = 0;
         timer;
         currentTime = totalTime;
+        results = [];
 
         //back to title screen
         $(".results").hide();
         $(".questions").empty();
         $(".opening-screen").show();
+        $(".detailed-results").empty();
+    });
+
+    //allows user to see which questions they got correct
+    $(".details").on("click", function () {
+        //checking if detailed results already shown
+        console.log($('.detailed-results').is(':empty'));
+        if ($('.detailed-results').is(':empty')) {
+            for (var i = 0; i < questions.length; i++) {
+                //displays questions to screen and color-codes them
+                var questionNumber = i + 1;
+                var questionResult = document.createElement("div");
+                var text = questionNumber + "."
+                $(questionResult).text(questionNumber + ".");
+                var result = results[i];
+                //correct answer
+                if (result === "correct") {
+                    //color-coding number green
+                    $(questionResult).attr("style", "color:green");
+                    //$(questionResult).text(text + "correct");
+                }
+                //incorrect answer
+                else if (result === "incorrect") {
+                    //color-coding number red
+                    $(questionResult).attr("style", "color:red");
+                    //$(questionResult).text(text + "wrong");
+                }
+                //unanswered
+                else {
+                    $(questionResult).attr("style", "color:blue");
+                    //$(questionResult).text(text + "unaswered");
+                }
+
+                $(".detailed-results").append(questionResult);
+                //setting mouse cursor back to normal
+                $(".details").attr("cursor","default");
+                console.log(questionResult);
+            }
+        }
     });
 });

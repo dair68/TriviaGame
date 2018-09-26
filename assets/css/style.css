@@ -153,3 +153,22 @@ footer {
 a {
     color: white;
 }
+
+.correct {
+    color: green;
+}
+
+.wrong {
+    color: red;
+}
+
+.unanswered {
+    color: blue;
+}
+
+.details {
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+}
+
