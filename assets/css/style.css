@@ -1,8 +1,5 @@
 body, html {
-    /* width: 100%;  */
     height: 100%;
-    /* padding: 0; */
-    /* margin: 0;  */
 }
 
 header, .title {
@@ -14,7 +11,6 @@ header, .title {
 .title {
     font-family: 'Abril Fatface', cursive;
     font-size: 2.5em;
-    /* font-family: 'Princess Sofia', cursive; */
     padding: 1%;
     text-align: center;
     background: black;
@@ -33,15 +29,15 @@ header, .title {
     color: white;
     font-family: 'Abril Fatface', cursive;
     width: 8em;
-    font-size: 20px;
+    font-size: 1.5em;
     padding: .5em;
-    /* padding-right: 2em; */
 }
 
 .start:hover, .reset:hover {
     background: white;
     color: black;
     border-color: black;
+    cursor: pointer;
 }
 
 .time-instructions {
@@ -103,7 +99,6 @@ main {
 .questions li::before {
     content: counter(step-counter);
     margin-right: 5px;
-    /* font-size: 80%; */
     background-color: black;
     color: white;
     font-weight: bold;
@@ -116,15 +111,10 @@ main {
 } 
 
 .picture {
-    /* display: inline; */
     height: auto;
     width: auto;
     max-height: 250px;
     max-width: 250px;
-}
-
-.submission {
-    /* text-align: center; */
 }
 
 .submit {
@@ -138,16 +128,14 @@ main {
     background: white;
     color: black;
     border-color: black;
+    cursor: pointer;
 }
 
 footer {
     display: none;
     text-align: center;
-    /* padding: 1em; */
     font-size: 1.5em;
     background: black;
-   
-    /* color: white; */
 }
 
 a {

@@ -225,7 +225,6 @@ $(document).ready(function () {
             correctAnswer: "Salvator Mundi by Leonardo da Vinci"
         }
     ];
-    //console.log(questions.length);
 
     //implementing start button
     $(".start").on("click", function () {
@@ -241,25 +240,21 @@ $(document).ready(function () {
         for (var i = 0; i < questions.length; i++) {
             var question = questions[i];
             //console.log(question);
-            //console.log(i);
-            //console.log(question);
             //console.log(question.prompt);
 
             //creating new container for question
-            var container = document.createElement("li");
+            var container = $("<li>");
             $(container).addClass("question-container");
             $(".questions").append(container);
 
             //adding question
-            var prompt = document.createElement("h3");
+            var prompt = $("<h3>");
             $(prompt).addClass("question");
             $(prompt).text(question.prompt);
             $(container).append(prompt);
             $(container).append("<br>");
 
-            //console.log(this.image !== "null");
             //image accompanying question
-            //console.log(this.image);
             if (question.image !== null) {
 
                 var picture = document.createElement("img");
@@ -271,18 +266,12 @@ $(document).ready(function () {
             }
 
             //creating answer container
-            var answers = document.createElement("form");
+            var answers = $("<form>");
             $(answers).addClass("answers");
-
-            //console.log(question.prompt);
 
             //adding answer choices
             for (var j = 0; j < question.answerChoices.length; j++) {
-                //var answer = document.createElement("div");
-                //$(answer).addClass("answer-choice");
                 var radio = "<input type='radio' name='answer-choice' class='answer-question-" + i + "'";
-                //$(answer).attr("type","radio");
-                //$(answer).attr("name","answer-choice");
                 var answerChoice = question.answerChoices[j];
                 radio = radio + "value='" + answerChoice + "' ";
                 var correctAnswer = question.correctAnswer;
@@ -293,40 +282,18 @@ $(document).ready(function () {
                     $(radio).addClass("correct-answer");
                 }
 
-                //$(answer).attr("value",question.correctAnswer);
-
-                //$(answers).append(answer);
-                //$(answer).text(question.answerChoices[i]);
-                //$(".answer").html(radio+correctAnswer+"'>" +answerChoice + "<br>");
                 var htmlLine;
-                //last question contains four images!
-                //"<img src='assets/images/Interchange.jpg' alt='abstract brushstrokes' class='picture'>"
-                // if(i === questions.length - 1) {
-                //     var imgAnswer = document.createElement("img");
-                //     $(imgAnswer).attr("src","assets/images/" + answerChoice);
-                //     $(imgAnswer).addClass("picture");
-                //     console.log(imgAnswer);
-                //     htmlLine = radio + imgAnswer + "<br>";
-                // } 
-                // else {
                 htmlLine = radio + answerChoice;
-                //}
-                // console.log(radio + correctAnswer);
                 $(answers).append(htmlLine);
-                //for styling buttons later
-                // var checkmark = "<span class='checkmark'></span>";
-                // $(answers).append(checkmark);
                 $(answers).append("<br>");
             }
             $(container).append(answers);
             $(container).append("<br>");
-            //console.log(i);
         }
     });
 
     //starts the timer
     function startTimer() {
-        //console.log(currentTime);
         $(".time").text(currentTime);
         timer = setInterval(updateTime, 1000);
     }
@@ -354,18 +321,17 @@ $(document).ready(function () {
         $(".question-screen").hide();
         $("footer").hide();
         $(".results").show();
-        console.log("Results");
+       
         //figuring out which answer choices were selected
         for (var i = 0; i < questions.length; i++) {
             var questionAnswered = false;
             $(".answer-question-" + i).each(function () {
                 if (this.checked === true) {
-                    //console.log($(this).attr("value"));
                     var selectedChoice = $(this).attr("value");
                     var correctChoice = $(this).attr("data-correct");
-                    console.log(selectedChoice);
-                    console.log(correctChoice);
-                    console.log(selectedChoice === correctChoice);
+                    // console.log(selectedChoice);
+                    // console.log(correctChoice);
+                    
                     //correct answer
                     if (selectedChoice === correctChoice) {
                         questionAnswered = true;
@@ -388,10 +354,7 @@ $(document).ready(function () {
 
         //unanswer questions = total # questions - correct answers - wrong answers
         unanswered = questions.length - correct - wrong;
-        console.log(correct);
-        console.log(wrong);
-        console.log(questions.length);
-
+        
         //showing the results to the screen
         $(".num-correct").text(correct);
         $(".num-wrong").text(wrong);
@@ -418,7 +381,6 @@ $(document).ready(function () {
     //allows user to see which questions they got correct
     $(".details").on("click", function () {
         //checking if detailed results already shown
-        console.log($('.detailed-results').is(':empty'));
         if ($('.detailed-results').is(':empty')) {
             for (var i = 0; i < questions.length; i++) {
                 //displays questions to screen and color-codes them
@@ -431,24 +393,21 @@ $(document).ready(function () {
                 if (result === "correct") {
                     //color-coding number green
                     $(questionResult).attr("style", "color:green");
-                    //$(questionResult).text(text + "correct");
                 }
                 //incorrect answer
                 else if (result === "incorrect") {
                     //color-coding number red
                     $(questionResult).attr("style", "color:red");
-                    //$(questionResult).text(text + "wrong");
                 }
                 //unanswered
                 else {
                     $(questionResult).attr("style", "color:blue");
-                    //$(questionResult).text(text + "unaswered");
                 }
 
                 $(".detailed-results").append(questionResult);
                 //setting mouse cursor back to normal
                 $(".details").attr("cursor","default");
-                console.log(questionResult);
+                //console.log(questionResult);
             }
         }
     });
